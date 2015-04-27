@@ -76,7 +76,7 @@ class Hello(object):
     @cherrypy.expose
     # index 方法為 CherryPy 各類別成員方法中的內建(default)方法, 當使用者執行時未指定方法, 系統將會優先執行 index 方法
     # 有 self 的方法為類別中的成員方法, Python 程式透過此一 self 在各成員方法間傳遞物件內容
-    def index_orig(self, toprint="40223211"):
+    def index_orig(self, toprint="Hello World!"):
         return toprint
     #@+node:2014fall.20141212095015.1779: *3* hello
     @cherrypy.expose
@@ -187,7 +187,7 @@ class Hello(object):
     <!-- 啟動 brython() -->
     <body onload="brython()">
         
-    <form method=POST action=do2Dgear>
+    <form method=POST action=mygeartest>
     齒數:<input type=text name=N><br />
     模數:<input type=text name=M><br />
     壓力角:<input type=text name=P><br />
@@ -361,7 +361,7 @@ class Hello(object):
     #@+node:2015.20150330144929.1765: *3* mygeartest
     @cherrypy.expose
     # N 為齒數, M 為模數, P 為壓力角
-    def mygeartest(self, N=20, M=5, P=15):
+    def mygeartest(self, N=20, M=15, P=9):
         outstring = '''
     <!DOCTYPE html> 
     <html>
@@ -372,6 +372,7 @@ class Hello(object):
     <script src="/static/Cango2D.js" type="text/javascript"></script>
     <script src="/static/gearUtils-04.js" type="text/javascript"></script>
     </head>
+
     <!-- 啟動 brython() -->
     <body onload="brython()">
 
@@ -380,6 +381,9 @@ class Hello(object):
     # 從 browser 導入 document
     from browser import document
     from math import *
+
+    n = int(input("齒數"))
+    a = int(input("模數"))
 
     # 準備在 id="plotarea" 的 canvas 中繪圖
     canvas = document["plotarea"]
@@ -414,7 +418,7 @@ class Hello(object):
         #create_oval(midx-rp, midy-rp, midx+rp, midy+rp, width=2)
         # a 為模數 (代表公制中齒的大小), 模數為節圓直徑(稱為節徑)除以齒數
         # 模數也就是齒冠大小
-        a=2*rp/n
+        #a=2*rp/n
         # d 為齒根大小, 為模數的 1.157 或 1.25倍, 這裡採 1.25 倍
         d=2.5*rp/n
         # ra 為齒輪的外圍半徑
@@ -496,7 +500,7 @@ class Hello(object):
             # 下列為齒頂圓上用來近似圓弧的直線
             create_line(lfx,lfy,rfx,rfy,fill=顏色)
 
-    齒輪(400,400,300,41,"blue")
+    齒輪(400,400,300,n,"blue")
 
     </script>
     <canvas id="plotarea" width="800" height="800"></canvas>
@@ -539,20 +543,13 @@ class Hello(object):
     # midx, midy 為齒輪圓心座標, rp 為節圓半徑, n 為齒數, pa 為壓力角, color 為線的顏色
     # Gear(midx, midy, rp, n=20, pa=20, color="black"):
     # 模數決定齒的尺寸大小, 囓合齒輪組必須有相同的模數與壓力角
-    # 壓力角 pa 單位為角度
-    pa = 20
-    # m 為模數
-    m = 20
-    # 第1齒輪齒數
-    n_g1 = 13
-    # 第2齒輪齒數
-    n_g2 = 18
-    # 計算兩齒輪的節圓半徑
-    rp_g1 = m*n_g1/2
-    rp_g2 = m*n_g2/2
 
-    # 將第1齒輪順時鐘轉 90 度
-    # 使用 ctx.save() 與 ctx.restore() 以確保各齒輪以相對座標進行旋轉繪圖
+    n_g1 = int(input("齒數"))
+    m = int(input("模數"))
+    pa = int(input("壓力角"))
+
+    rp_g1 = m*n_g1/2
+
     ctx.save()
     # translate to the origin of second gear
     ctx.translate(400,400)
@@ -563,19 +560,7 @@ class Hello(object):
     spur.Spur(ctx).Gear(400,400,rp_g1,n_g1, pa, "blue")
     ctx.restore()
 
-    # 將第2齒輪逆時鐘轉 90 度之後, 再多轉一齒, 以便與第1齒輪進行囓合
-    ctx.save()
-    # translate to the origin of second gear
-    ctx.translate(400+rp_g1+rp_g2,400)
-    # rotate to engage
-    ctx.rotate(-pi/2-pi/n_g2)
-    # put it back
-    ctx.translate(-(400+rp_g1+rp_g2),-400)
-    spur.Spur(ctx).Gear(400+rp_g1+rp_g2,400,rp_g2,n_g2, pa, "black")
-    ctx.restore()
 
-    # 假如第3齒也要進行囓合, 又該如何進行繪圖?
-    #spur.Spur(ctx).Gear(400,400,100,12, pa, "red")
 
     </script>
     <canvas id="plotarea" width="1200" height="1200"></canvas>

@@ -18,11 +18,11 @@
 <v t="2014fall.20141212095015.1774" a="E"><vh>@path ./</vh>
 <v t="2014fall.20141212095015.1775" a="E"
 expanded="2014fall.20141212095015.1777,"><vh>@file wsgi.py</vh></v>
-<v t="office.20150407074720.1" a="E"
+<v t="office.20150407074720.1"
 expanded="office.20150407074720.3,"><vh>@file gear.py</vh></v>
 <v t="2014fall.20141212095015.1780"><vh>@edit setup.py</vh></v>
 </v>
-<v t="amd.20150415215803.1"><vh>@path static/Brython3.1.1-20150328-091302/Lib/site-packages/</vh>
+<v t="amd.20150415215803.1" a="E"><vh>@path static/Brython3.1.1-20150328-091302/Lib/site-packages/</vh>
 <v t="amd.20150415215843.1"><vh>@edit spur.py</vh></v>
 </v>
 <v t="2015.20150330144929.1715"><vh>以下為專案報告相關檔案</vh>
@@ -38,7 +38,7 @@ expanded="office.20150407074720.3,"><vh>@file gear.py</vh></v>
 <v t="amd.20150414195916.1"><vh>@edit scrum_4.md</vh></v>
 <v t="amd.20150414195741.1"><vh>@edit product_owner.md</vh></v>
 </v>
-<v t="2015.20150330144929.1763"><vh>以下為參考資料</vh>
+<v t="2015.20150330144929.1763" a="E"><vh>以下為參考資料</vh>
 <v t="2015.20150330144929.1764"><vh>Brython 正齒輪程式</vh></v>
 <v t="amd.20150415160041.1"><vh>fourbar 參考程式</vh></v>
 <v t="amd.20150416213450.1"><vh>@url Cango Gear examples</vh></v>
